@@ -11,10 +11,8 @@ library(tidyr)
 ##################################################################
 
 #Setup environment
-sub_folders <- list.files()
-data_location <- grep("ELL", sub_folders, value=T)
-path_to_top_level <- (paste0(getwd(), "/", data_location))
-path_to_raw_data <- (paste0(getwd(), "/", data_location, "/", "raw"))
+path_to_top_level <- (paste0(getwd(), "/"))
+path_to_raw_data <- (paste0(getwd(), "/", "raw"))
 
 all_grad_csvs <- dir(path_to_raw_data, recursive=T, pattern = "_grad") 
 all_nongrad_csvs <- dir(path_to_raw_data, recursive=T, pattern = "nongrad") 
@@ -157,7 +155,9 @@ years <- c("2010-2011",
            "2013-2014",
            "2014-2015", 
            "2015-2016", 
-           "2016-2017")
+           "2016-2017",
+           "2017-2018",
+           "2018-2019")
 
 backfill_years <- expand.grid(
   `FixedDistrict` = unique(districts$`FixedDistrict`),
@@ -247,7 +247,7 @@ test2<-test[duplicated(test), ]
 #Write CSV
 write.table(
   complete_four_yr_gr_long,
-  file.path(path_to_top_level, "data", "four_year_grad_rate_by_ell_2011-2017.csv"),
+  file.path(path_to_top_level, "data", "four_year_grad_rate_by_ell_2011-2019.csv"),
   sep = ",",
   row.names = F
 )
